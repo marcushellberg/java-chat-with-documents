@@ -1,0 +1,166 @@
+.about-view {
+  padding: 2px;
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  --cv-blue: 212 96% 54%;
+  --cv-purple: 259 97% 66%;
+  --cv-dropzone-border-color: hsl(var(--cv-blue) / 0.5);
+  --cv-dropzone-bg-color: hsl(var(--cv-blue) / 0.2);
+  --cv-droptarget-border-color: hsl(var(--cv-purple) / 1);
+  --cv-droptarget-bg-color: hsl(var(--cv-purple) / 0.4);
+  --cv-stripe-width: 1.5px;
+  --cv-stripe-gap: 9px;
+  --cv-stripe-color: hsl(var(--cv-blue) / 0.2);
+  --cv-layout-border-color: var(--lumo-contrast-40pct);
+  --cv-checkerboard-color1: hsl(0 0% 0% / 0.05);
+  --cv-checkerboard-color2: hsl(0 0% 100% / 0.05);
+  --cv-checkerboard-size: 16px;
+}
+
+.about-view[dragging] {
+  --cv-checkerboard-color1: hsl(var(--cv-blue) / 0.2);
+  --cv-checkerboard-color2: hsl(var(--cv-blue) / 0.1);
+  --cv-layout-border-color: var(--cv-dropzone-border-color);
+}
+
+.about-view .preview-container {
+  display: contents;
+}
+
+/* The root layout is not necessarily inside a flex box so width/height needs to be used */
+.about-view .preview-container > .layout[style*='align-self: stretch'] {
+  width: 100%;
+}
+.about-view .preview-container > .layout[style*='flex-grow: 1'] {
+  height: 100%;
+}
+
+/* Apply some default gap and padding to layouts that don't have inline styles for them while dragging. */
+.about-view[dragging] .layout:not([style*='gap:']) {
+  gap: 8px;
+}
+
+.about-view[dragging] .layout:not([style*='padding:'], [empty]) {
+  padding: 8px;
+}
+
+.about-view .cover-overlay {
+  position: absolute;
+  border-radius: 1px;
+}
+
+.about-view:not([starting-drag]) .cover-overlay.editable-hovering {
+  outline: 2px solid hsl(var(--cv-blue) / 1);
+  outline-offset: -1px;
+}
+
+.about-view:not([starting-drag]) .cover-overlay.editable-editing {
+  outline: 1px solid hsl(var(--cv-blue) / 1);
+  outline-offset: -1px;
+  box-shadow: inset 0 0 0 2px var(--lumo-base-color);
+}
+
+.about-view .overlays,
+.about-view .drop-zones {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.about-view:not([dragging]) .drop-zones {
+  pointer-events: none;
+}
+
+.about-view .drop-zone {
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 1px;
+  min-height: 10px;
+  min-width: 10px;
+}
+
+.about-view[dragging] .drop-zone:not([empty-layout]) {
+  outline: 1px dashed var(--cv-dropzone-border-color);
+  outline-offset: -2px;
+  background-color: var(--cv-dropzone-bg-color);
+}
+
+.about-view .drop-zone[remaining-space] {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--cv-stripe-color),
+    var(--cv-stripe-color) var(--cv-stripe-width),
+    transparent var(--cv-stripe-width),
+    transparent var(--cv-stripe-gap)
+  );
+}
+
+.about-view[dragging] .drop-zone[drag-over] {
+  background: var(--cv-droptarget-bg-color);
+  outline: 1px solid var(--cv-droptarget-border-color);
+  outline-offset: -1px;
+  box-shadow: inset 0 0 0 2px var(--lumo-base-color);
+}
+
+.drop-zone[empty-layout] {
+  z-index: -1;
+}
+
+.about-view:not([readonly]) .layout[empty],vaadin-form-layout[empty] {
+  border-radius: 1px;
+  background: repeating-conic-gradient(var(--cv-checkerboard-color1) 0% 25%, var(--cv-checkerboard-color2) 0% 50%) 50% /
+    var(--cv-checkerboard-size) var(--cv-checkerboard-size);
+  background-clip: content-box;
+  outline: 1px dashed var(--cv-layout-border-color);
+  outline-offset: -2px;
+}
+.about-view[dragging]:not([readonly]) vaadin-form-layout[empty]{
+  background: transparent;
+}
+
+
+.about-view .layout[empty]::before {
+  content: '';
+  display: block;
+  min-width: 64px;
+  min-height: 32px;
+}
+
+.about-view[readonly] .drop-zones,
+.about-view[readonly] .overlays {
+  display: none;
+}
+
+.about-view[inline-editing] .drop-zones,
+.about-view[inline-editing] .overlays {
+  display: none;
+}
+.about-view .content-wrapper[contenteditable='true']{
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+}
+
+
+.about-view[dragging] vaadin-form-layout {
+  padding: 8px;
+}
+.about-view vaadin-form-layout[empty]::before {
+  content: '';
+  display: block;
+  min-width: 64px;
+  min-height: 32px;
+}
+
+.about-view[dragging] vaadin-form-layout:not([empty])::after {
+  content: '';
+  display: block;
+  min-width: 64px;
+  min-height: 32px;
+}
