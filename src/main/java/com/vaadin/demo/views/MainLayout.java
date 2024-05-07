@@ -1,7 +1,5 @@
 package com.vaadin.demo.views;
 
-import com.vaadin.demo.views.about.AboutView;
-import com.vaadin.demo.views.chat.ChatView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Footer;
