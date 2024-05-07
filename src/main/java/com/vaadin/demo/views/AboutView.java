@@ -17,12 +17,21 @@ public class AboutView extends VerticalLayout {
 
     public AboutView() {
         add(
-                new H1("About Docs Chat"),
-                new Paragraph("Docs Chat is a simple chat application that uses LangChain4j to provide AI-powered responses. " +
-                        "The AI is trained on a set of documents that are imported into the system. " +
-                        "The AI is able to provide responses based on the context of the conversation."),
-                new Paragraph("This application is built using Vaadin and LangChain4j."),
-                new Html("<p>You can find the source code for this application on <a href='https://github.com/marcushellberg/doc-chat'>GitHub</a>.</p>")
+                new H1("About DocsChat"),
+                new Html("""
+                        <div>
+                            <p>
+                                DocsChat is an example chat application that provides an AI chatbot that uses your own documents as context.
+                                The application is built with <a href="https://vaadin.com">Vaadin</a> and <a href="https://github.com/langchain4j/langchain4j">LangChain4j</a>.
+                            </p>
+                            <p>
+                                The application supports both OpenAI (requires an <a href="https://openai.com/index/openai-api">API key</a>), and local models through an OpenAI compatible API like <a href="https://ollama.com/">Ollama</a>.
+                            </p>
+                            <p>
+                                You can find the source code for this application on <a href="https://github.com/marcushellberg/doc-chat">GitHub</a>.
+                            </p>
+                        </div>
+                        """)
         );
     }
 }

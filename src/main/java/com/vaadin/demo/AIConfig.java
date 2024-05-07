@@ -3,8 +3,10 @@ package com.vaadin.demo;
 import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.memory.chat.ChatMemoryProvider;
+import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.memory.chat.TokenWindowChatMemory;
 import dev.langchain4j.model.Tokenizer;
+import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
 import dev.langchain4j.store.embedding.EmbeddingStore;
@@ -30,10 +32,11 @@ public class AIConfig {
     /*
      * Keep track of the chat history for each chat.
      * This is used to generate the context for the AI.
+     * Consider using TokenWindowChatMemory for more control.
      */
     @Bean
-    ChatMemoryProvider chatMemoryProvider(Tokenizer tokenizer) {
-        return chatId -> TokenWindowChatMemory.withMaxTokens(1000, tokenizer);
+    ChatMemoryProvider chatMemoryProvider() {
+        return chatId -> MessageWindowChatMemory.withMaxMessages(10);
     }
 
     /*

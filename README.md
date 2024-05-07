@@ -7,10 +7,12 @@ Documents are parsed with the Apache Tika library to support most common files.
 
 ## Configuration
 
-To use the application, you need to configure the following two properties in the `application.properties` file:
+This app supports OpenAI and local OpenAI compatible APIs. 
 
-- `langchain4j.open-ai.streaming-chat-model.api-key`, defaults to the `OPENAI_API_KEY` environment variable
-- `docs.location`, the location of the documents to be used by the chatbot. 
+You need an [OpenAI API key](https://platform.openai.com/api-keys) to use OpenAI. 
+Local mode has been tested with [Ollama](https://ollama.com/) and the `llama3` model.
+
+**Update `application.properties` before running the application.** 
 
 ## Running the application
 

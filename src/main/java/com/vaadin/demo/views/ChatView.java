@@ -37,7 +37,7 @@ public class ChatView extends VerticalLayout {
 
             aiAssistant.chat(chatId, question)
                     .onNext(answer::appendMarkdownAsync)
-                    .onError(err -> System.err.println(e))
+                    .onError(err -> System.err.println("ooops" + e))
                     .start();
         });
 
