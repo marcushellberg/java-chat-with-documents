@@ -2,6 +2,7 @@ package com.vaadin.demo.views;
 
 import com.vaadin.demo.views.MainLayout;
 import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Paragraph;
@@ -21,7 +22,7 @@ public class AboutView extends VerticalLayout {
                         "The AI is trained on a set of documents that are imported into the system. " +
                         "The AI is able to provide responses based on the context of the conversation."),
                 new Paragraph("This application is built using Vaadin and LangChain4j."),
-                new Paragraph("You can find the source code for this application on GitHub: TODO")
+                new Html("<p>You can find the source code for this application on <a href='https://github.com/marcushellberg/doc-chat'>GitHub</a>.</p>")
         );
     }
 }
