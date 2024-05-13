@@ -1,2 +1,21 @@
-@import url('./main-layout.css');
-@import url('./views/about-view.css');
+.new-chat-button {
+    margin: var(--lumo-space-m);
+}
+
+@media (max-width: 768px) {
+    vaadin-message {
+        flex-direction: column;
+    }
+
+    vaadin-message > vaadin-avatar {
+        display: none;
+    }
+
+    .new-chat-button {
+        position: fixed;
+        top: 0.7em;
+        right: 0.7em;
+        margin: 0;
+        z-index: 1000;
+    }
+}

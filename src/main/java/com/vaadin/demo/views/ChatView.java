@@ -22,6 +22,12 @@ public class ChatView extends VerticalLayout {
         var messageList = new VerticalLayout();
         var messageInput = new MessageInput();
 
+        setPadding(false);
+        setSpacing(false);
+        messageList.setPadding(false);
+        messageList.setSpacing(false);
+
+        newChatButton.addClassName("new-chat-button");
         newChatButton.addClickListener(e -> {
             chatId = UUID.randomUUID().toString();
             messageList.removeAll();

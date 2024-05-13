@@ -33,7 +33,7 @@ public class MainLayout extends AppLayout {
         viewTitle = new H2();
         viewTitle.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
 
-        addToNavbar(true, toggle, viewTitle);
+        addToNavbar(false, toggle, viewTitle);
     }
 
     private void addDrawerContent() {
