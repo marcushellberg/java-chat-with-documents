@@ -25,7 +25,7 @@ public class AIConfig {
 
     private static final Logger log = LoggerFactory.getLogger(AIConfig.class);
 
-    @Value("${docs.location}")
+    @Value("${ai.docs.location}")
     private String docsLocation;
 
 
