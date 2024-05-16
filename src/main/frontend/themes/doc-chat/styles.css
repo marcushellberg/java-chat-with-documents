@@ -1,21 +1,63 @@
 .new-chat-button {
-    margin: var(--lumo-space-m);
+    position: fixed;
+    top: 0;
+    inset-inline-end: 0;
+    margin: calc((var(--lumo-size-xl) - var(--lumo-size-m)) / 2);
+    z-index: 1;
 }
 
-@media (max-width: 768px) {
-    vaadin-message {
-        flex-direction: column;
-    }
+vaadin-message {
+    gap: var(--lumo-space-m);
+}
 
+vaadin-message.you {
+    margin-inline-start: auto;
+    flex-direction: row-reverse;
+}
+
+vaadin-message.you::part(content) {
+    background-color: var(--lumo-contrast-5pct);
+    padding: var(--lumo-space-s) var(--lumo-space-m);
+    border-radius: var(--lumo-border-radius-l);
+}
+
+vaadin-message p:last-child {
+    margin-bottom: 0.5em;
+}
+
+vaadin-message > vaadin-avatar {
+    margin: 0;
+}
+
+@media (max-width: 40rem) {
     vaadin-message > vaadin-avatar {
         display: none;
     }
+}
 
-    .new-chat-button {
-        position: fixed;
-        top: 0.7em;
-        right: 0.7em;
-        margin: 0;
-        z-index: 1000;
-    }
+vaadin-message-input vaadin-text-area[focused]::part(input-field) {
+    box-shadow: 0 0 0 var(--vaadin-focus-ring-width, 2px) var(--vaadin-focus-ring-color, var(--lumo-primary-color-50pct));
+}
+
+code {
+    font-size: 0.9em;
+    background: transparent;
+}
+
+p code {
+    font-weight: 600;
+}
+
+p code::before {
+    content: "`";
+}
+
+p code::after {
+    content: "`";
+}
+
+pre {
+    padding: 0.5em 0.75em;
+    line-height: 1.4;
+    background: var(--lumo-contrast-5pct);
 }

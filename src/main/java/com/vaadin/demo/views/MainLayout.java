@@ -31,14 +31,15 @@ public class MainLayout extends AppLayout {
         toggle.setAriaLabel("Menu toggle");
 
         viewTitle = new H2();
-        viewTitle.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
+        viewTitle.addClassNames(LumoUtility.FontSize.LARGE);
 
         addToNavbar(false, toggle, viewTitle);
     }
 
     private void addDrawerContent() {
         H1 appName = new H1("DocsChat");
-        appName.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
+        appName.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.Vertical.MEDIUM,
+                LumoUtility.Margin.Horizontal.MEDIUM);
         Header header = new Header(appName);
 
         Scroller scroller = new Scroller(createNavigation());
@@ -48,6 +49,7 @@ public class MainLayout extends AppLayout {
 
     private SideNav createNavigation() {
         SideNav nav = new SideNav();
+        nav.addClassNames(LumoUtility.Margin.SMALL, LumoUtility.Margin.Top.NONE);
 
         nav.addItem(new SideNavItem("Chat", ChatView.class, LineAwesomeIcon.COMMENTS.create()));
         nav.addItem(new SideNavItem("About", AboutView.class, LineAwesomeIcon.QUESTION_CIRCLE.create()));
